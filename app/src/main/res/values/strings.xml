@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Live Character OS</string>
+    <string name="accessibility_description">Live Character Android interaction bridge.</string>
+    <string name="overlay_channel_name">Live Character OS</string>
+</resources>
