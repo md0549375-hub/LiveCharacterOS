@@ -147,8 +147,7 @@ class MainActivity : AppCompatActivity() {
         box.addView(section("Kaynak / Hak kayıtları"))
         catalog.forEach { profile ->
             box.addView(label(
-                profile.name + " — " + statusLabel(profile.rights.status) + "
-" +
+                profile.name + " — " + statusLabel(profile.rights.status) + "\n" +
                     profile.rights.sources.joinToString { it.name },
                 12f, Color.LTGRAY
             ))
@@ -238,11 +237,7 @@ class MainActivity : AppCompatActivity() {
         androidx.appcompat.app.AlertDialog.Builder(this)
             .setTitle(decision.title)
             .setMessage(
-                profile.name + "
-
-" + decision.message + "
-
-Kaynaklar: " +
+                profile.name + "\n\n" + decision.message + "\n\nKaynaklar: " +
                     profile.rights.sources.joinToString { it.name }
             )
             .setPositiveButton("Tamam", null)
