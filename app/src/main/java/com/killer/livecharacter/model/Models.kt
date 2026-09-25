@@ -4,6 +4,21 @@ data class Vec2(val x: Float, val y: Float) {
     fun finite(): Vec2 = Vec2(if (x.isFinite()) x else 0f, if (y.isFinite()) y else 0f)
 }
 
+enum class RightsStatus { ORIGINAL, LICENSED, USER_OWNED_LICENSE, PERMITTED_USE, RESTRICTED, UNKNOWN }
+
+data class RightsSource(val kind: String, val name: String, val url: String? = null, val note: String? = null)
+
+data class RightsRecord(
+    val status: RightsStatus = RightsStatus.ORIGINAL,
+    val company: String? = null,
+    val workTitle: String? = null,
+    val characterName: String? = null,
+    val licenseId: String? = null,
+    val permissionNote: String? = null,
+    val sources: List<RightsSource> = emptyList(),
+    val verifiedAt: String? = null
+)
+
 data class CharacterProfile(
     val id: String,
     val name: String,
@@ -16,7 +31,8 @@ data class CharacterProfile(
     val headRadius: Float = 48f,
     val torsoLength: Float = 170f,
     val upperArmRatio: Float = 0.52f,
-    val lowerArmRatio: Float = 0.48f
+    val lowerArmRatio: Float = 0.48f,
+    val rights: RightsRecord = RightsRecord()
 ) {
     fun sanitized(): CharacterProfile = copy(
         gravity = gravity.coerceIn(0f, 5000f), massKg = massKg.coerceIn(0.1f, 500f),
